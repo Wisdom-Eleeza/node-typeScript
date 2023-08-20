@@ -11,3 +11,5 @@ module.exports = {
   },
   rules: {},
 };
+
+// eslint will highlight code and tell if there is error depending on how it setup
