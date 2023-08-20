@@ -18,6 +18,12 @@
 # dependencies (npm install)
 - express
 - dotenv
+- npm install module-alias (this must be installed and include the "Path" in the package.json as moduleAlias)
+ "_moduleAliases": {
+    "@/resources": "dist/resources",
+    "@/utils": "dist/utils",
+    "@/middleware": "dist/middleware"
+  }
 
 # Configuring File for typescript
 - npx tsc --init
@@ -27,4 +33,7 @@
       "@/resources/*" : ["resources/*"], this is where controllers, models etc will be
       "@/utils/*" : ["utils/*"],
       "@/middleware/*" : ["middleware/*"],
-    }, 
+    },  
+
+    - index.ts is the entry point
+    - app.ts is where everything is going to be setup like initializing mongodb etc...
