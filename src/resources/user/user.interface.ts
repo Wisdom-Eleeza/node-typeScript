@@ -1,6 +1,6 @@
 import { Document } from 'mongoose';
 
-export default interface User extends Document {
+interface User extends Document {
     email: string;
     name: string;
     password: string;
@@ -8,3 +8,5 @@ export default interface User extends Document {
 
     isValidPassword(password: string): Promise<Error | boolean>;
 }
+
+export default User;

@@ -14,10 +14,19 @@
 - @typescript-eslint/eslint-plugin
 - @types/node
 - @types/express
+- @types/compression
+- @types/cors
+- @types/morgan
 
 # dependencies (npm install)
 - express
 - dotenv
+- mongoose
+- compression (For compressing request)
+- cors
+- morgan
+- helmet
+- envalid
 - npm install module-alias (this must be installed and include the "Path" in the package.json as moduleAlias)
  "_moduleAliases": {
     "@/resources": "dist/resources",
