@@ -1,10 +1,11 @@
 import { Schema, model } from 'mongoose';
 import Post from '@/resources/post/post.interface';
+import { number, string } from 'joi';
 
 const PostSchema = new Schema(
     {
         title: {
-            type: String,
+            type: string,
             required: true,
         },
         body: {
