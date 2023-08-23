@@ -1,9 +1,9 @@
-import { Request, Response, NextFunction } from 'express';
-import token from '@/utils/token';
-import UserModel from '@/resources/user/user.model';
-import Token from '@/utils/interfaces/token.interface';
-import HttpException from '@/utils/exceptions/http.exception';
-import jwt from 'jsonwebtoken';
+import { Request, Response, NextFunction } from 'express'; // Import necessary modules and types
+import token from '@/utils/token'; // Import the token utility
+import UserModel from '@/resources/user/user.model'; // Import the UserModel
+import Token from '@/utils/interfaces/token.interface'; // Import the Token interface
+import HttpException from '@/utils/exceptions/http.exception'; // Import the HttpException class
+import jwt from 'jsonwebtoken'; // Import the jsonwebtoken library
 
 async function authenticatedMiddleware(
     req: Request,
@@ -13,7 +13,7 @@ async function authenticatedMiddleware(
     const bearer = req.headers.authorization;
 
     if (!bearer || !bearer.startsWith('Bearer ')) {
-        return next(new HttpException(401, 'Unauthorised'));
+        return next(new HttpException(401, 'Unauthorised')); // Return unauthorized response if no or invalid bearer token
     }
 
     const accessToken = bearer.split('Bearer ')[1].trim();
@@ -23,7 +23,7 @@ async function authenticatedMiddleware(
         );
 
         if (payload instanceof jwt.JsonWebTokenError) {
-            return next(new HttpException(401, 'Unauthorised'));
+            return next(new HttpException(401, 'Unauthorised')); // Return unauthorized response if token verification fails
         }
 
         const user = await UserModel.findById(payload.id)
@@ -31,15 +31,15 @@ async function authenticatedMiddleware(
             .exec();
 
         if (!user) {
-            return next(new HttpException(401, 'Unauthorised'));
+            return next(new HttpException(401, 'Unauthorised')); // Return unauthorized response if user is not found
         }
 
-        req.user = user;
+        req.user = user; // Attach the user object to the request
 
-        return next();
+        return next(); // Move to the next middleware or route handler
     } catch (error) {
-        return next(new HttpException(401, 'Unauthorised'));
+        return next(new HttpException(401, 'Unauthorised')); // Handle unexpected errors with unauthorized response
     }
 }
 
-export default authenticatedMiddleware;
+export default authenticatedMiddleware; // Export the middleware function
