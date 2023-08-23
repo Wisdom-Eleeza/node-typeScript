@@ -1,11 +1,11 @@
-import { Schema, model } from 'mongoose';
-import Post from '@/resources/post/post.interface';
-import { number, string } from 'joi';
+import { Schema, model } from 'mongoose'; // Import necessary modules
+import Post from '@/resources/post/post.interface'; // Import the Post interface
 
+// Define the PostSchema using the Mongoose Schema constructor
 const PostSchema = new Schema(
     {
         title: {
-            type: string,
+            type: String,
             required: true,
         },
         body: {
@@ -16,4 +16,5 @@ const PostSchema = new Schema(
     { timestamps: true }
 );
 
+// Create and export the Post model using the PostSchema
 export default model<Post>('Post', PostSchema);
