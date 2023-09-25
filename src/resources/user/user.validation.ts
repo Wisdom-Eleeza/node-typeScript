@@ -1,7 +1,7 @@
 import Joi from 'joi'; // Import the Joi library for validation
 
 // Define a Joi schema for user registration validation
-const register = Joi.object({
+const registerValidation = Joi.object({
     name: Joi.string().max(30).required(), // Validate name as a required string with a maximum length of 30 characters
 
     email: Joi.string().email().required(), // Validate email as a required string in email format
@@ -10,11 +10,11 @@ const register = Joi.object({
 });
 
 // Define a Joi schema for user login validation
-const login = Joi.object({
+const loginValidation = Joi.object({
     email: Joi.string().required(), // Validate email as a required string
 
     password: Joi.string().required(), // Validate password as a required string
 });
 
 // Export an object containing the validation schemas
-export default { register, login };
+export default { registerValidation, loginValidation };

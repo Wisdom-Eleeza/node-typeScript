@@ -21,12 +21,12 @@ class UserController implements Controller {
         // Define and set up the routes for this controller
         this.router.post(
             `${this.path}/register`,
-            validationMiddleware(validate.register),
+            validationMiddleware(validate.registerValidation),
             this.register
         ); // Route for user registration
         this.router.post(
             `${this.path}/login`,
-            validationMiddleware(validate.login),
+            validationMiddleware(validate.loginValidation),
             this.login
         ); // Route for user login
         this.router.get(`${this.path}`, authenticated, this.getUser); // Route to get user data
